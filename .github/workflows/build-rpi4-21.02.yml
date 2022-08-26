@@ -321,20 +321,20 @@ jobs:
         id: mods
         run: |
           cd $OPENWRT_ROOT_PATH
-          git config --global credential.helper store
-          git clone https://$GITHUB_REPOSITORY_OWNER:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY_OWNER/HelmiWrt-Plus.git filex
-          rm -rf filex/{README.md,LICENSE,runbashing.sh}
-          cp -r filex/* package/base-files/files/
-          export UP_USERNEW=$( grep user_new filex/up_info.txt | sed 's/user_new=//g' )
-          echo "UP_USERNEW=$UP_USERNEW" >> $GITHUB_ENV
-          export UP_NEW=$( grep new_repo filex/up_info.txt | sed 's/new_repo=//g' )
-          echo "UP_NEW=$UP_NEW" >> $GITHUB_ENV
-          rm -rf filex
-          sed -i -e 's/\r$//' $(grep -rli "/bin/bash" "package/base-files/files/bin")
-          chmod +x package/base-files/files/bin/*
-          mv package/base-files/files/root/.oh-my-zsh/themes/ys.zsh-theme files/root/.oh-my-zsh/themes/ys.zsh-theme
-          echo -e "this is immortalwrt base build" > package/base-files/files/bin/is_immortalwrt_based
-          echo -e "this is $SOURCE_BRANCH build" > package/base-files/files/bin/is-$SOURCE_BRANCH-build
+          #git config --global credential.helper store
+          #git clone https://$GITHUB_REPOSITORY_OWNER:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY_OWNER/HelmiWrt-Plus.git filex
+          #3rm -rf filex/{README.md,LICENSE,runbashing.sh}
+          #p -r filex/* package/base-files/files/
+          #export UP_USERNEW=$( grep user_new filex/up_info.txt | sed 's/user_new=//g' )
+          #echo "UP_USERNEW=$UP_USERNEW" >> $GITHUB_ENV
+          #export UP_NEW=$( grep new_repo filex/up_info.txt | sed 's/new_repo=//g' )
+          #echo "UP_NEW=$UP_NEW" >> $GITHUB_ENV
+          #rm -rf filex
+          #sed -i -e 's/\r$//' $(grep -rli "/bin/bash" "package/base-files/files/bin")
+          #chmod +x package/base-files/files/bin/*
+          #mv package/base-files/files/root/.oh-my-zsh/themes/ys.zsh-theme files/root/.oh-my-zsh/themes/ys.zsh-theme
+          #echo -e "this is immortalwrt base build" > package/base-files/files/bin/is_immortalwrt_based
+          #echo -e "this is $SOURCE_BRANCH build" > package/base-files/files/bin/is-$SOURCE_BRANCH-build
 
       - name: Download DL Package
         id: download
