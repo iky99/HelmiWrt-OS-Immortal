@@ -190,7 +190,7 @@ jobs:
           replacesArtifacts: true
           tag: ${{ env.TOOLCHAIN_TAG }}
           commit: ${{ env.CURRENT_BRANCH }}
-          token: ${{ secrets.HELMIWRT_RW }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: output/*
 
   Build:
@@ -275,7 +275,7 @@ jobs:
           cd $GITHUB_WORKSPACE
           git init
           git config --global credential.helper store
-          git remote add origin https://$GITHUB_REPOSITORY_OWNER:${{ secrets.HELMIWRT_RW }}@github.com/$GITHUB_REPOSITORY
+          git remote add origin https://$GITHUB_REPOSITORY_OWNER:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git fetch
           git checkout -t origin/$CURRENT_BRANCH
 
@@ -322,7 +322,7 @@ jobs:
         run: |
           cd $OPENWRT_ROOT_PATH
           git config --global credential.helper store
-          git clone https://$GITHUB_REPOSITORY_OWNER:${{ secrets.HELMIWRT_RW }}@github.com/$GITHUB_REPOSITORY_OWNER/HelmiWrt-Plus.git filex
+          git clone https://$GITHUB_REPOSITORY_OWNER:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY_OWNER/HelmiWrt-Plus.git filex
           rm -rf filex/{README.md,LICENSE,runbashing.sh}
           cp -r filex/* package/base-files/files/
           export UP_USERNEW=$( grep user_new filex/up_info.txt | sed 's/user_new=//g' )
@@ -417,5 +417,5 @@ jobs:
           tag: helmiwrt-${{ env.BUILD_DATE }}
           bodyFile: release_body.txt
           commit: ${{ env.CURRENT_BRANCH }}
-          token: ${{ secrets.HELMIWRT_RW }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           artifacts: ${{ env.OPENWRT_ROOT_PATH }}/bin/targets/${{ env.DEVICE_TARGET }}/${{ env.DEVICE_SUBTARGET }}/*
